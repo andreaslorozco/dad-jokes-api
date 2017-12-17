@@ -1,3 +1,4 @@
 let mongoose = require('mongoose');
+let conf = require('./conf.js');
 
-mongoose.connect('mongodb://admin:palabraclave@ds011775.mlab.com:11775/dadjokes');
+mongoose.connect(`mongodb://${conf.user}:${conf.password}@${conf.uri}`);

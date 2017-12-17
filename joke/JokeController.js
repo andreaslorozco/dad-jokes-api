@@ -68,4 +68,16 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// UPDATE A JOKE FROM DATABASE
+
+router.put('/:id', (req, res) => {
+  Joke.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, joke) => {
+      if (err) {
+        return res.status(500).send("There was a problem updating the user.")
+      } else {
+        res.status(200).send(joke);
+      }
+  });
+});
+
 module.exports = router;
