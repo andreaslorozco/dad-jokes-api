@@ -1,12 +1,12 @@
-let express = require('express');
-let app = express();
-let router = express.Router();
-let bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const router = express.Router();
+const bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
-let Joke = require('./Joke');
+const Joke = require('./Joke');
 
 // GET /jokes route
 
