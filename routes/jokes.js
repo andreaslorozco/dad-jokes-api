@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
-const Joke = require('./Joke');
+const Joke = require('../models/joke/Joke');
 
 // GET /jokes route
 

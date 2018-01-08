@@ -5,7 +5,7 @@ const {ExtractJwt} = require('passport-jwt');
 
 const conf = require('./conf');
 const User = require('./models/user/User');
-const UserController = require('./models/user/UserController');
+const UserController = require('./routes/users');
 
 
 passport.use(new JWTStrategy({

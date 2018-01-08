@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
-const UserController = require('./models/user/UserController');
-const JokeController = require('./models/joke/JokeController');
+const UserController = require('./routes/users');
+const JokeController = require('./routes/jokes');
 const bodyParser = require('body-parser');
 
 

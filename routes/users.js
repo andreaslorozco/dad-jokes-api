@@ -8,9 +8,9 @@ const passport = require('passport');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
-const conf = require('./../../conf');
-const User = require('./User');
-const passportConf = require('./../../passport');
+const conf = require('./../conf');
+const User = require('./../models/user/User');
+const passportConf = require('./../passport');
 
 // GET users
 
