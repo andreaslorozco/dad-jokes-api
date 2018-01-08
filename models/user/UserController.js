@@ -44,20 +44,29 @@ router.post('/', (req, res) => {
   });
 });
 
+// SIGN IN ___
+
+router.post('/signin', passport.authenticate('local', {session: false}), (req, res) => {
+  // Generate TOKEN
+  const token = signToken(req.user);
+  res.status(200).json(token);
+
+});
+
 // GET secret route
 router.get('/secret', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.status(200).send("It worked!");
 })
 
+// SIGN TOKEN FUNCTION
 
 signToken = user => {
   const token = JWT.sign({
     iss: 'Dad Jokes API',
     sub: user._id,
-    iad: new Date().getTime(), // current time
+    iat: new Date().getTime(), // current time
     exp: new Date().setDate(new Date().getDate() +1) //current time + 1 day ahead
   }, conf.jwt_secret);
-
   return token;
 }
 
