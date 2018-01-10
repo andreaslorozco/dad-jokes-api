@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
   Joke.create({
-
     title: req.body.title,
     text: req.body.text,
     keywords: req.body.keywords

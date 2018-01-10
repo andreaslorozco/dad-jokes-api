@@ -8,7 +8,7 @@ const passport = require('passport');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
-const conf = require('./../conf');
+const { JWT_SECRET } = process.env;
 const User = require('./../models/user/User');
 const passportConf = require('./../passport');
 
@@ -66,8 +66,8 @@ signToken = user => {
     sub: user._id,
     iat: new Date().getTime(), // current time
     exp: new Date().setDate(new Date().getDate() +1) //current time + 1 day ahead
-  }, conf.jwt_secret);
-  return token;
+  }, JWT_SECRET);
+  return { token };
 }
 
 

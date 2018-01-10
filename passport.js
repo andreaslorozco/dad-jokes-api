@@ -3,14 +3,15 @@ const JWTStrategy = require('passport-jwt').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const {ExtractJwt} = require('passport-jwt');
 
-const conf = require('./conf');
+const { JWT_SECRET } = process.env;
 const User = require('./models/user/User');
 const UserController = require('./routes/users');
 
+console.log(JWT_SECRET);
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-  secretOrKey: conf.jwt_secret
+  secretOrKey: JWT_SECRET
 }, (payload, done) => {
   try {
     // Find specified user in token
