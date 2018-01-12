@@ -15,7 +15,7 @@ const passportConf = require('./../passport');
 
 // GET users
 
-router.get('/', (req, res) => {
+router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
   User.find().then((users) => {
     res.status(200).send(users);
   }, (err) => {
