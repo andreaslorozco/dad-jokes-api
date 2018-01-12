@@ -4,12 +4,13 @@ const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const { validateBody, schemas } = require('../helpers/routeHelpers');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
 const { JWT_SECRET } = process.env;
-const User = require('./../models/user/User');
+const User = require('./../models/User');
 const passportConf = require('./../passport');
 
 // GET users
@@ -24,7 +25,7 @@ router.get('/', (req, res) => {
 
 // POST users
 
-router.post('/', (req, res) => {
+router.post('/', validateBody(schemas.authSchema), (req, res) => {
   let user = new User({
     username: req.body.username,
     email: req.body.email,

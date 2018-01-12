@@ -4,7 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const {ExtractJwt} = require('passport-jwt');
 
 const { JWT_SECRET } = process.env;
-const User = require('./models/user/User');
+const User = require('./models/User');
 const UserController = require('./routes/users');
 
 console.log(JWT_SECRET);

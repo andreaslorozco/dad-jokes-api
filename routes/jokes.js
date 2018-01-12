@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
+const _ = require('lodash');
+const { validateBody, schemas } = require('../helpers/routeHelpers');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
-const Joke = require('../models/joke/Joke');
+const Joke = require('../models/Joke');
 
 // GET /jokes route
 
@@ -22,7 +24,7 @@ router.get('/', (req, res) => {
 
 // POST /jokes route
 
-router.post('/', (req, res) => {
+router.post('/', validateBody(schemas.jokeSchema), (req, res) => {
 
   Joke.create({
     title: req.body.title,
@@ -51,6 +53,21 @@ router.get('/:id', (req, res) => {
         res.status(200).send(joke);
       };
     });
+});
+
+// GET /jokes/:category
+
+router.get('/category/:name', (req, res) => {
+  Joke.find({keywords: req.params.name}, (err, joke) => {
+    if (err) {
+      console.log(joke);
+      return res.status(500).send('There was a problem finding the joke');
+    } else if (!joke || _.isEmpty(joke)) {
+      return res.status(404).send('No joke found');
+    } else {
+      res.status(200).send(joke);
+    }
+  });
 });
 
 // DELETE A JOKE FROM THE DATABASE
