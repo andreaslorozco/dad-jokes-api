@@ -7,8 +7,6 @@ const { JWT_SECRET } = process.env;
 const User = require('./models/User');
 const UserController = require('./routes/users');
 
-console.log(JWT_SECRET);
-
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET
