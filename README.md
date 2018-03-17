@@ -16,6 +16,7 @@ bad jokes. Jokes are stored with keywords/tags to allow custom retrieval. API ca
 * Although authentication is implemented, some routes still need to implement authentication in order to access them.
 * Initial tests have been implemented in development (using Mocha, supertest), although have not yet been merged to github.
 * Implement functionality: Allow users to mark and remove jokes from a favorite list.
+* Add CONF example
 
 ## Heroku Deployment
 
