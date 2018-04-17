@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha",
-    "test-watch": "nodemon --exec npm test"
+    "test-watch": "SET \"NODE_ENV=test\" && nodemon --exec npm test"
   },
   "author": "",
   "license": "ISC",

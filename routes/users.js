@@ -37,7 +37,7 @@ router.post('/', validateBody(schemas.authSchema), (req, res) => {
     // TOKEN Stuff
     const token = signToken(user);
 
-    // RESPONDE WITH TOKEN
+    // RESPOND WITH TOKEN
     res.status(200).send({user, token});
 
   }, (err) => {
@@ -45,7 +45,7 @@ router.post('/', validateBody(schemas.authSchema), (req, res) => {
   });
 });
 
-// SIGN IN ___
+// SIGN IN
 
 router.post('/signin', passport.authenticate('local', {session: false}), (req, res) => {
   // Generate TOKEN

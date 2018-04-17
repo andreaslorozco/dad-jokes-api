@@ -16,7 +16,10 @@ router.get('/', (req, res) => {
   Joke.find({}, (err, jokes) => {
     if (err) {
       return res.status(500).send("There was a problem retrieving info from the DB");
+    } else if(_.isEmpty(jokes)) {
+      return res.status(404).send('No jokes were found in the database');
     } else {
+      console.log('here');
       res.status(200).send(jokes);
     };
   });
@@ -25,17 +28,14 @@ router.get('/', (req, res) => {
 // POST /jokes route
 
 router.post('/', validateBody(schemas.jokeSchema), (req, res) => {
-
   Joke.create({
     title: req.body.title,
     text: req.body.text,
     keywords: req.body.keywords
   }, (err, joke) => {
-    console.log(req.body);
-    if (err) {
+    if (err) {      
       return res.status(500).send('There was an error adding info to the DB');
     } else {
-      // console.log(req.body);
       res.status(200).send(joke);
     };
   });
@@ -48,7 +48,9 @@ router.get('/:id', (req, res) => {
       if (err) {
         return res.status(500).send("There was a problem finding the joke");
       } else if (!joke) {
-        return res.status(404).send("No joke found");
+        
+        return res.status(404).send(`No joke found`);
+
       } else {
         res.status(200).send(joke);
       };
