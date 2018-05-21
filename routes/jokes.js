@@ -19,7 +19,10 @@ router.get('/', (req, res) => {
     } else if(_.isEmpty(jokes)) {
       return res.status(404).send('No jokes were found in the database');
     } else {
-      console.log('here');
+      res.setHeader('X-Frame-Options', 'ALLOWALL');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'POST, GET');
+      res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       res.status(200).send(jokes);
     };
   });

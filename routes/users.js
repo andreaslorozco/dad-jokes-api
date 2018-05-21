@@ -5,7 +5,9 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const { validateBody, schemas } = require('../helpers/routeHelpers');
+const cors = require('cors');
 
+app.use(cors);
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
